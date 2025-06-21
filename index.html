@@ -200,7 +200,7 @@
 
         .artwork-image {
             width: 100%;
-            height: 250px;
+            height: 250px; /* Toto je pevná výška kontejneru obrázku */
             background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
                         linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
                         linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
@@ -214,6 +214,15 @@
             font-style: italic;
             border-bottom: 1px solid #eee;
         }
+        
+        /* NOVÉ PRAVIDLO PRO OBRÁZKY UVNITŘ .artwork-image */
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Tato vlastnost zajistí, že se obrázek vejde celý bez oříznutí */
+            display: block; /* Pomáhá odstranit případné mezery pod obrázkem */
+        }
+        /* KONEC NOVÉHO PRAVIDLA */
 
         .artwork-info {
             padding: 1.5rem;
@@ -379,13 +388,12 @@
             <div class="container">
                 <h2 class="section-title">Moje tvorba</h2>
                 
-                <!-- 1. Studijní malba -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">🎨 Studijní malba</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="draperie2.jpg" alt="Draperie 2" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="draperie2.jpg" alt="Draperie 2">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Draperie 2</div>
@@ -394,7 +402,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="draperie3.jpg" alt="Draperie 3" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="draperie3.jpg" alt="Draperie 3">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Draperie 3</div>
@@ -403,7 +411,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="dzban.jpg" alt="Džbán" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="dzban.jpg" alt="Džbán">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Džbán</div>
@@ -412,7 +420,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ruce.jpg" alt="Ruce" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ruce.jpg" alt="Ruce">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Ruce</div>
@@ -421,7 +429,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ruze.jpg" alt="Růže" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ruze.jpg" alt="Růže">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Růže</div>
@@ -430,7 +438,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="socha2.jpg" alt="Socha 2" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="socha2.jpg" alt="Socha 2">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Socha 2</div>
@@ -439,7 +447,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="vazy.jpg" alt="Vázy" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="vazy.jpg" alt="Vázy">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Vázy</div>
@@ -449,13 +457,12 @@
                     </div>
                 </div>
 
-                <!-- 2. Studijní kresba -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">✏️ Studijní kresba</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="boty.jpg" alt="Boty" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="boty.jpg" alt="Boty">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Boty</div>
@@ -464,7 +471,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="Draperie.jpg" alt="Draperie" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="Draperie.jpg" alt="Draperie">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Draperie</div>
@@ -473,7 +480,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="lahve.jpg" alt="Lahve" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="lahve.jpg" alt="Lahve">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Lahve</div>
@@ -482,7 +489,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="Socha.jpg" alt="Socha" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="Socha.jpg" alt="Socha">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Socha</div>
@@ -491,7 +498,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="velbloud.jpg" alt="Velbloud" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="velbloud.jpg" alt="Velbloud">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Velbloud</div>
@@ -500,7 +507,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="zatisi.jpg" alt="Zátiší" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="zatisi.jpg" alt="Zátiší">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Zátiší</div>
@@ -509,7 +516,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="zidle.jpg" alt="Židle" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="zidle.jpg" alt="Židle">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Židle</div>
@@ -519,13 +526,12 @@
                     </div>
                 </div>
 
-                <!-- 3. Portréty -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">👤 Portréty</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="portret.jpg" alt="Portrét" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="portret.jpg" alt="Portrét">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Portrét</div>
@@ -534,7 +540,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="socha3.jpg" alt="Socha 3" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="socha3.jpg" alt="Socha 3">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Socha 3</div>
@@ -543,7 +549,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="vyrazy.jpg" alt="Výrazy" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="vyrazy.jpg" alt="Výrazy">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Výrazy</div>
@@ -552,7 +558,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="zena.jpg" alt="Žena" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="zena.jpg" alt="Žena">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Žena</div>
@@ -561,7 +567,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="zena2.jpg" alt="Žena 2" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="zena2.jpg" alt="Žena 2">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Žena 2</div>
@@ -571,13 +577,12 @@
                     </div>
                 </div>
 
-                <!-- 4. Koláže -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">📷 Koláže</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="dance.jpg" alt="Dance" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="dance.jpg" alt="Dance">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Dance</div>
@@ -586,7 +591,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="dior.jpg" alt="Dior" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="dior.jpg" alt="Dior">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Dior</div>
@@ -595,7 +600,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="kolaz.jpg" alt="Koláž" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="kolaz.jpg" alt="Koláž">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Koláž</div>
@@ -605,13 +610,12 @@
                     </div>
                 </div>
 
-                <!-- 5. Volná tvorba černobílá -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">⚫ Volná tvorba černobílá</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ghibli.jpg" alt="Ghibli" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ghibli.jpg" alt="Ghibli">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Ghibli</div>
@@ -620,7 +624,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="labut.jpg" alt="Labuť" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="labut.jpg" alt="Labuť">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Labuť</div>
@@ -629,7 +633,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="inkoust.jpg" alt="Inkoust" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="inkoust.jpg" alt="Inkoust">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Inkoust</div>
@@ -638,7 +642,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="linoryt.jpg" alt="Linoryt" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="linoryt.jpg" alt="Linoryt">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Linoryt</div>
@@ -647,7 +651,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="linoryt2.jpg" alt="Linoryt 2" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="linoryt2.jpg" alt="Linoryt 2">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Linoryt 2</div>
@@ -656,7 +660,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="lode.jpg" alt="Lodě" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="lode.jpg" alt="Lodě">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Lodě</div>
@@ -665,7 +669,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ptak.jpg" alt="Pták" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ptak.jpg" alt="Pták">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Pták</div>
@@ -675,13 +679,12 @@
                     </div>
                 </div>
 
-                <!-- 6. Volná tvorba barevná -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">🌈 Volná tvorba barevná</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="andel.jpg" alt="Anděl" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="andel.jpg" alt="Anděl">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Anděl</div>
@@ -690,7 +693,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="andel2.jpg" alt="Anděl 2" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="andel2.jpg" alt="Anděl 2">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Anděl 2</div>
@@ -699,7 +702,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="andel3.jpg" alt="Anděl 3" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="andel3.jpg" alt="Anděl 3">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Anděl 3</div>
@@ -708,7 +711,7 @@
                         </div>
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ryba.jpg" alt="Ryba" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ryba.jpg" alt="Ryba">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Ryba</div>
@@ -718,13 +721,12 @@
                     </div>
                 </div>
 
-                <!-- 7. Digitální -->
                 <div class="gallery-container">
                     <h3 class="gallery-title">💻 Digitální</h3>
                     <div class="gallery">
                         <div class="artwork">
                             <div class="artwork-image">
-                                <img src="ilustrace.png" alt="Ilustrace" style="width:100%; height:100%; object-fit:cover;">
+                                <img src="ilustrace.png" alt="Ilustrace">
                             </div>
                             <div class="artwork-info">
                                 <div class="artwork-title">Ilustrace</div>
@@ -734,7 +736,13 @@
                     </div>
                 </div>
 
-               
+                <div class="upload-instructions">
+                    <h3>📋 Návod na nahrání vašich obrázků</h3>
+                    <p><strong>1. Nahrajte všechny obrázky na GitHub:</strong> dance.jpg, dior.jpg, kolaz.jpg, portret.jpg, socha3.jpg, vyrazy.jpg, zena.jpg, zena2.jpg, draperie2.jpg, draperie3.jpg, dzban.jpg, ruce.jpg, ruze.jpg, socha2.jpg, vazy.jpg, boty.jpg, Draperie.jpg, lahve.jpg, Socha.jpg, velbloud.jpg, zatisi.jpg, zidle.jpg, andel.jpg, andel2.jpg, andel3.jpg, ryba.jpg, ghibli.jpg, labut.jpg, inkoust.jpg, linoryt.jpg, linoryt2.jpg, lode.jpg, ptak.jpg, ilustrace.png</p>
+                    <p><strong>2. Použijte přesně tyto názvy souborů</strong> - včetně velkých písmen tam, kde jsou uvedena (např. "Draperie.jpg" s velkým D)</p>
+                    <p><strong>3. Po nahrání obrázků bude portfolio kompletní</strong> a automaticky se zobrazí všechna vaše díla v příslušných kategoriích.</p>
+                </div>
+            </div>
         </section>
 
         <section id="o-mne">
@@ -742,7 +750,7 @@
                 <h2 class="section-title">O mně</h2>
                 <div class="about">
                     <p>
-                        Vítejte v mém uměleckém světě! Jsem Puška, mladá umělkyně, která hledá svou cestu v různých uměleckých technikách. 
+                        Vítejte v mém uměleckém světě! Jsem Puska, mladá umělkyně, která hledá svou cestu v různých uměleckých technikách. 
                         Moje tvorba se neomezuje na jeden styl nebo médium - experimentuji s malbou, kresbou i dalšími formami vizuálního umění.
                     </p>
                     <br>
@@ -764,9 +772,12 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <h3>📧 Email</h3>
-                        <p>helena.reg75@gmail.com</p>
+                        <p>puska.art@email.cz</p>
                     </div>
-
+                    <div class="contact-item">
+                        <h3>📱 Instagram</h3>
+                        <p>@puska_art</p>
+                    </div>
                     <div class="contact-item">
                         <h3>🎨 Zakázky</h3>
                         <p>Otevřena novým projektům</p>
@@ -778,7 +789,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Puška Portfolio. Všechna práva vyhrazena.</p>
+            <p>&copy; 2024 Puska Portfolio. Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
