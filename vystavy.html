@@ -424,6 +424,26 @@
         .exhibition-item .address-link:hover {
             text-decoration: underline;
         }
+
+        /* Styles for language switcher */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px; /* Adjust as needed */
+        }
+
+        .language-switcher a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-switcher img {
+            width: 30px; /* Size of flag icons */
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -437,6 +457,10 @@
                 <li><a href="vystavy.html">Výstavy</a></li>
                 <li><a href="index.html#kontakt">Kontakt</a></li>
             </ul>
+            <div class="language-switcher">
+                <a href="vystavy.html"><img src="czech-flag.png" alt="Česky"></a>
+                <a href="exhibitions-en.html"><img src="uk-flag.png" alt="English"></a>
+            </div>
             <button class="mobile-menu">☰</button>
         </nav>
     </header>
@@ -483,7 +507,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Puška Portfolio. Všechna práva vyhrazena.</p>
+            <p>© 2025 Puška Portfolio. Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
