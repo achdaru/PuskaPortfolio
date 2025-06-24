@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puska Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .gallery-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .gallery-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .artwork {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artwork:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 250px; 
+            background-color: white; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            display: block; 
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+        }
+
+        .artwork-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .artwork-medium {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .about {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .contact-item p {
+            color: #bdc3c7;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-switcher img {
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            transition: transform 0.2s;
+        }
+
+        .language-switcher img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #333;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+
+            .language-switcher {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Puska Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="index.html"><img src="https://flagicons.lipis.dev/flags/4x3/cz.svg" alt="Czech Flag" title="Switch to Czech"></a>
+                <a href="index-en.html"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="UK Flag" title="Stay in English"></a>
+            </div>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Puska Portfolio</h1>
+                    <p>Discover the world of art through my eyes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container">
+                <h2 class="section-title">My Work</h2>
+                
+                <div class="gallery-container">
+                    <h3 class="gallery-title">🎨 Study Painting</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="draperie2.jpg" alt="Drapery 2">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Drapery 2</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="draperie3.jpg" alt="Drapery 3">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Drapery 3</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="dzban.jpg" alt="Jug">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Jug</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ruce.jpg" alt="Hands">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Hands</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ruze.jpg" alt="Roses">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Roses</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="socha2.jpg" alt="Statue 2">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Statue 2</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="vazy.jpg" alt="Vases">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Vases</div>
+                                <div class="artwork-medium">Study Painting, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">✏️ Study Drawing</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="boty.jpg" alt="Shoes">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Shoes</div>
+                                <div class="artwork-medium">Study Drawing, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="Draperie.jpg" alt="Drapery">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Drapery</div>
+                                <div class="artwork-medium">Study Drawing, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="lahve.jpg" alt="Bottles">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Bottles</div>
+                                <div class="artwork-medium">Study Drawing, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="Socha.jpg" alt="Statue">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Statue</div>
+                                <div class="artwork-medium">Study Drawing, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="velbloud.jpg" alt="Camel">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Camel</div>
+                                <div class="artwork-medium">Study Drawing, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="zatisi.jpg" alt="Still Life">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Still Life</div>
+                                <div class="artwork-medium">Study Drawing, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="zidle.jpg" alt="Chair">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Chair</div>
+                                <div class="artwork-medium">Study Drawing, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">👤 Portraits</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="portret.jpg" alt="Portrait">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Portrait</div>
+                                <div class="artwork-medium">Portrait, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="socha3.jpg" alt="Statue 3">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Statue 3</div>
+                                <div class="artwork-medium">Portrait, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="vyrazy.jpg" alt="Expressions">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Expressions</div>
+                                <div class="artwork-medium">Portrait, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="zena.jpg" alt="Woman">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Woman</div>
+                                <div class="artwork-medium">Portrait, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="zena2.jpg" alt="Woman 2">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Woman 2</div>
+                                <div class="artwork-medium">Portrait, 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">📷 Collages</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="dance.jpg" alt="Dance">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Dance</div>
+                                <div class="artwork-medium">Collage, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="dior.jpg" alt="Dior">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Dior</div>
+                                <div class="artwork-medium">Collage, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="kolaz.jpg" alt="Collage">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Collage</div>
+                                <div class="artwork-medium">Collage, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">⚫ Freeform Black and White</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ghibli.jpg" alt="Ghibli">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Ghibli</div>
+                                <div class="artwork-medium">Black and White Drawing, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="labut.jpg" alt="Swan">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Swan</div>
+                                <div class="artwork-medium">Black and White Drawing, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="inkoust.jpg" alt="Ink">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Ink</div>
+                                <div class="artwork-medium">Ink, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="linoryt.jpg" alt="Linocut">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Linocut</div>
+                                <div class="artwork-medium">Linocut, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="linoryt2.jpg" alt="Linocut 2">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Linocut 2</div>
+                                <div class="artwork-medium">Linocut, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="lode.jpg" alt="Boats">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Boats</div>
+                                <div class="artwork-medium">Black and White Drawing, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ptak.jpg" alt="Bird">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Bird</div>
+                                <div class="artwork-medium">Black and White Drawing, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">🌈 Freeform Color</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="andel.jpg" alt="Angel">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Angel</div>
+                                <div class="artwork-medium">Color Painting, 2024</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="andel2.jpg" alt="Angel 2">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Angel 2</div>
+                                <div class="artwork-medium">Color Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="andel3.jpg" alt="Angel 3">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Angel 3</div>
+                                <div class="artwork-medium">Color Painting, 2025</div>
+                            </div>
+                        </div>
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ryba.jpg" alt="Fish">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Fish</div>
+                                <div class="artwork-medium">Color Painting, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-container">
+                    <h3 class="gallery-title">💻 Digital</h3>
+                    <div class="gallery">
+                        <div class="artwork">
+                            <div class="artwork-image">
+                                <img src="ilustrace.png" alt="Illustration">
+                            </div>
+                            <div class="artwork-info">
+                                <div class="artwork-title">Illustration</div>
+                                <div class="artwork-medium">Digital Art, 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-me">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about">
+                    <p>
+                        Welcome to my artistic world! I am Puska, a young artist who is finding her way through various artistic techniques. 
+                        My work is not limited to one style or medium - I experiment with painting, drawing, and other forms of visual art.
+                    </p>
+                    <br>
+                    <p>
+                        Each piece is an opportunity for me to express emotions, thoughts, and perspectives that surround me. 
+                        I believe that art has the power to connect people and build bridges between different worlds and experiences.
+                    </p>
+                    <br>
+                    <p>
+                        This portfolio represents my current artistic development and journey to finding my own unique voice in the world of visual arts.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p>helena.reg75@gmail.com</p>
+            </div>
+            <a href="exhibitions.html" class="contact-item"> 
+                <h3>🗓️ Exhibitions</h3>
+                <p>Current and past exhibitions</p>
+            </a>
+            <a href="https://www.instagram.com/umelecke_poleno/" target="_blank" class="contact-item">
+                <h3>📷 Instagram</h3>
+                <p>Follow my work</p>
+            </a>
+            <div class="contact-item">
+                <h3>🎨 Commissions</h3>
+                <p>Open to new projects</p>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Puska Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (for future enhancement)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to artwork items
+        document.querySelectorAll('.artwork').forEach(artwork => {
+            artwork.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            artwork.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
