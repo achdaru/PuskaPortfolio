@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puska Portfolio - Exhibitions</title>
+    <style>
+        /* Zde zkopíruj celé CSS z vašeho index.html */
+        /* To zajistí, že stylizace bude konzistentní */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .gallery-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .gallery-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .artwork {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artwork:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 250px; 
+            background-color: white; /* Bílé pozadí pro obrázky */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .artwork-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Zajišťuje, že se obrázek vejde celý */
+            display: block; 
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+        }
+
+        .artwork-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .artwork-medium {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .about {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            text-decoration: none; /* Pro odkaz v sekci kontakt */
+            color: inherit; /* Pro odkaz v sekci kontakt */
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .contact-item p {
+            color: #bdc3c7;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #333;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+        }
+
+        .upload-instructions {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .upload-instructions h3 {
+            margin-bottom: 1rem;
+        }
+
+        .upload-instructions p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* SPECIFIC STYLES FOR EXHIBITION PAGE */
+        .exhibition-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .exhibition-item {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column; /* For content alignment */
+            align-items: center; /* To center image and text */
+            text-align: center; /* To center text */
+        }
+
+        .exhibition-item h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .exhibition-item p {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .exhibition-item .date {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 1rem; /* Space above date */
+        }
+
+        .exhibition-item .exhibition-image-container {
+            width: 100%; /* Image container */
+            max-width: 500px; /* Maximum image width */
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .exhibition-item .exhibition-image-container img {
+            width: 100%;
+            height: auto;
+            display: block; /* Removes space below image */
+        }
+        .exhibition-item .address-link {
+            text-decoration: none;
+            color: #e74c3c; /* Link color */
+            font-weight: bold;
+            margin-top: 1rem;
+            display: inline-block; /* To allow margin-top */
+        }
+
+        .exhibition-item .address-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles for language switcher */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px; /* Adjust as needed */
+        }
+
+        .language-switcher a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-switcher img {
+            width: 30px; /* Size of flag icons */
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index-en.html" class="logo">Puska Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index-en.html#home">Home</a></li>
+                <li><a href="index-en.html#gallery">Gallery</a></li>
+                <li><a href="index-en.html#about-me">About Me</a></li>
+                <li><a href="exhibitions-en.html">Exhibitions</a></li>
+                <li><a href="index-en.html#contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="vystavy.html"><img src="czech-flag.png" alt="Česky"></a>
+                <a href="exhibitions-en.html"><img src="uk-flag.png" alt="English"></a>
+            </div>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="exhibitions" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>My Exhibitions</h1>
+                    <p>Places where I have presented my work</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="regular-section" style="padding-top: 2rem;"> <div class="container">
+                <h2 class="section-title">Upcoming and Past Exhibitions</h2>
+                
+                <div class="exhibition-list">
+                    <div class="exhibition-item">
+                        <h3>🥐 Bobák's Bakery </h3>
+                        <p>Come and see a selection of my latest works in the pleasant environment of Bobák's Bakery cafe.</p>
+                        
+                        <div class="exhibition-image-container">
+                            <img src="pozvanka_bobakova.jpg" alt="Invitation to the exhibition at Bobák's Bakery">
+                        </div>
+
+                        <p><strong>Where:</strong> Bobák's Bakery</p>
+                        <p>
+                            <a href="https://maps.app.goo.gl/phB2n9QT4UpoBHHq5" target="_blank" class="address-link">
+                                Kolbenova 9, Vysočany, 190 00 Prague 9
+                            </a>
+                        </p>
+                        <p class="date">**Date:** June 30, 2025 - August 31, 2025</p>
+                        <p>
+                            <a href="https://bobakova-pekarna-praha.choiceqr.com/pages/o-nas" target="_blank" class="address-link">
+                                More about the exhibition venue
+                            </a>
+                        </p>
+                    </div>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Puska Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="index-en.html#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').split('#')[1]; // Get ID after #
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement && window.location.pathname.endsWith('index-en.html')) {
+                    // Only if we are on index-en.html, scroll
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    // Otherwise, redirect to index-en.html with #ID
+                    window.location.href = 'index-en.html' + this.getAttribute('href').substring(this.getAttribute('href').indexOf('#'));
+                }
+            });
+        });
+
+        // Special rule for "Exhibitions" link, always redirects to exhibitions-en.html
+        document.querySelector('a[href="exhibitions-en.html"]').addEventListener('click', function(e) {
+            // No special action needed, the browser will handle the navigation to the new page.
+        });
+
+
+        // Mobile menu toggle (kept the same for now)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add parallax effect to hero section (kept the same for now)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effects to artwork items (not on exhibition page, but just in case)
+        document.querySelectorAll('.artwork').forEach(artwork => {
+            artwork.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            artwork.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
