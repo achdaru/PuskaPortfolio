@@ -3,69 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales and Commissions - Puška Portfolio</title>
+    <title>Sales and Commissions - Puska Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #333;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            padding-top: 50px; /* Adjust based on header height */
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
             position: relative;
         }
-        
-        /* Language flags styling */
-        .language-flags {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
+
+        .nav-links a:hover {
+            color: #e74c3c;
         }
-        .language-flags a {
-            display: block;
-            transition: transform 0.3s ease;
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
         }
-        .language-flags a:hover {
-            transform: scale(1.1);
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
-        .language-flags img {
-            border-radius: 3px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+        main {
+            margin-top: 80px;
         }
-        
-        .container {
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
+            margin: 4rem auto;
+            padding: 3rem;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
-        h1 {
+
+        .content-container h2 {
             font-size: 2.5rem;
             color: #2c3e50;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
-        p {
+
+        .content-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .content-container p {
             font-size: 1.1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #555;
+            line-height: 1.8;
         }
+
         .email-link {
             color: #e74c3c;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2rem;
         }
+
         .email-link:hover {
             text-decoration: underline;
         }
+
+        .price-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .price-info strong {
+            font-size: 1.3rem;
+        }
+
         .back-link {
             display: inline-block;
             margin-top: 2rem;
@@ -75,35 +206,167 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            font-weight: 500;
         }
+
         .back-link:hover {
             background-color: #c0392b;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-switcher img {
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            transition: transform 0.2s;
+        }
+
+        .language-switcher img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #333;
+                cursor: pointer;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+
+            .language-switcher {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+
+            .content-container {
+                margin: 2rem auto;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Language flags -->
-    <div class="language-flags">
-        <a href="order.html" title="Čeština">
-            <img src="https://flagcdn.com/24x18/cz.png" alt="Čeština" width="24" height="18">
-        </a>
-        <a href="order_en.html" title="English">
-            <img src="https://flagcdn.com/24x18/gb.png" alt="English" width="24" height="18">
-        </a>
-    </div>
+    <header>
+        <nav>
+            <a href="index-en.html" class="logo">Puska Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index-en.html#home">Home</a></li>
+                <li><a href="index-en.html#gallery">Gallery</a></li>
+                <li><a href="index-en.html#about-me">About Me</a></li>
+                <li><a href="exhibitions-en.html">Exhibitions</a></li>
+                <li><a href="index-en.html#contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="Order.html"><img src="https://flagicons.lipis.dev/flags/4x3/cz.svg" alt="Česky"></a>
+                <a href="Order_en.html"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="English"></a>
+            </div>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
 
-    <div class="container">
-        <h1>Sales and Commissions</h1>
-        <p>
-            If you are interested in purchasing paintings from an exhibition, or in commissioning a custom piece, please contact me.
-        </p>
-        <p>
-            Email: <a href="mailto:helena.reg75@gmail.com" class="email-link">helena.reg75@gmail.com</a>
-        </p>
-        <p>
-            Painting prices start from <strong>2500 CZK</strong>.
-        </p>
-        <a href="index-en.html#contact" class="back-link">Back to Contact</a>
-    </div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Sales and Commissions</h1>
+                    <p>Information about artwork sales and custom commissions</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="content-container">
+                    <h2>🎨 How to Order Artwork</h2>
+                    <p>
+                        If you are interested in purchasing paintings from exhibitions, or in commissioning a custom piece, please contact me.
+                    </p>
+                    <p>
+                        Email: <a href="mailto:helena.reg75@gmail.com" class="email-link">helena.reg75@gmail.com</a>
+                    </p>
+                    <div class="price-info">
+                        <p>
+                            <strong>Painting prices start from 2500 CZK</strong>
+                        </p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+                            Final price depends on size, technique, and complexity of the artwork
+                        </p>
+                    </div>
+                    <a href="index-en.html#contact" class="back-link">Back to Contact</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Puska Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="index-en.html#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').split('#')[1];
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement && window.location.pathname.endsWith('index-en.html')) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    window.location.href = 'index-en.html' + this.getAttribute('href').substring(this.getAttribute('href').indexOf('#'));
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
 </body>
 </html>
