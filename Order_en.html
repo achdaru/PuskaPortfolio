@@ -15,7 +15,30 @@
             flex-direction: column;
             align-items: center;
             padding-top: 50px; /* Adjust based on header height */
+            position: relative;
         }
+        
+        /* Language flags styling */
+        .language-flags {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .language-flags a {
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .language-flags a:hover {
+            transform: scale(1.1);
+        }
+        .language-flags img {
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
         .container {
             max-width: 800px;
             margin: 2rem auto;
@@ -59,6 +82,16 @@
     </style>
 </head>
 <body>
+    <!-- Language flags -->
+    <div class="language-flags">
+        <a href="order.html" title="Čeština">
+            <img src="https://flagcdn.com/24x18/cz.png" alt="Čeština" width="24" height="18">
+        </a>
+        <a href="order_en.html" title="English">
+            <img src="https://flagcdn.com/24x18/gb.png" alt="English" width="24" height="18">
+        </a>
+    </div>
+
     <div class="container">
         <h1>Sales and Commissions</h1>
         <p>
